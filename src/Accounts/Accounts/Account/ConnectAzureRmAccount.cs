@@ -289,13 +289,12 @@ namespace Microsoft.Azure.Commands.Profile
                     azureAccount.SetProperty(AzureAccount.Property.KeyVaultAccessToken, KeyVaultAccessToken);
                     break;
                 case ServicePrincipalCertificateParameterSet:
-                case ServicePrincipalParameterSet:
-                    azureAccount.Type = AzureAccount.AccountType.ServicePrincipal;
                     if (SendCertificateChain.IsPresent)
                     {
-                        azureAccount.SetProperty("SendCertificateChain", Boolean.TrueString);
+                        azureAccount.SetProperty("SendCertificateChain", SendCertificateChain.ToString());
                     }
-                    
+                case ServicePrincipalParameterSet:
+                    azureAccount.Type = AzureAccount.AccountType.ServicePrincipal;  
                     break;
                 case ManagedServiceParameterSet:
                     azureAccount.Type = AzureAccount.AccountType.ManagedService;
